@@ -1,0 +1,31 @@
+nohup: ignoring input
+2024-12-09 17:22:32,585	INFO worker.py:1752 -- Started a local Ray instance.
+2024-12-09 17:22:33,743	INFO tune.py:622 -- [output] This will use the new output engine with verbosity 1. To disable the new output and use the legacy output engine, set the environment variable RAY_AIR_NEW_OUTPUT=0. For more information, please see https://github.com/ray-project/ray/issues/36949
+╭──────────────────────────────────────────────────────────╮
+│ Configuration for experiment     key_value_tune          │
+├──────────────────────────────────────────────────────────┤
+│ Search algorithm                 BasicVariantGenerator   │
+│ Scheduler                        AsyncHyperBandScheduler │
+│ Number of trials                 10                      │
+╰──────────────────────────────────────────────────────────╯
+
+Trial status: 10 TERMINATED
+Current time: 2024-12-09 23:48:30. Total running time: 6hr 25min 56s
+Logical resource usage: 0/40 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:P100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name                      status         l1     l2     batch_size            lr     iter     total time (s)         loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_keys_values_7809e_00000   TERMINATED     64    128            256   0.000631603       15           5971.19    0.00139849 │
+│ train_keys_values_7809e_00001   TERMINATED    256     32           4096   0.000114223        1            453.845   0.00153224 │
+│ train_keys_values_7809e_00002   TERMINATED    256     64             64   0.067955           1            675.369   0.00157268 │
+│ train_keys_values_7809e_00003   TERMINATED     64    256             64   0.00267557        15          10511.1     0.00140896 │
+│ train_keys_values_7809e_00004   TERMINATED    128    256             64   0.00071056         1            708.407   0.0016432  │
+│ train_keys_values_7809e_00005   TERMINATED     32     32            256   0.000779382        1            402.354   0.00151682 │
+│ train_keys_values_7809e_00006   TERMINATED    256     64          16384   0.000553741        4           1738.46    0.00149403 │
+│ train_keys_values_7809e_00007   TERMINATED     64     32           8192   0.00894742         4           1786.3     0.00151499 │
+│ train_keys_values_7809e_00008   TERMINATED    128     32           1024   0.000493626        1            409.649   0.00153724 │
+│ train_keys_values_7809e_00009   TERMINATED     32    256          16384   0.00019889         1            437.592   0.00158747 │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+Best trial config: {'l1': 64, 'l2': 128, 'batch_size': 256, 'lr': 0.00063160311685941}
+Best trial final validation loss: 0.001398492348380387

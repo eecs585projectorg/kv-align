@@ -1,0 +1,28 @@
+Token indices sequence length is longer than the specified maximum sequence length for this model (70449 > 1024). Running this sequence through the model will result in indexing errors
+
+Starting perplexity evaluation for model distilbert/distilgpt2 for num_tokens 5000, cache_sizes [32, 64, 128, 255], dataset wikitext, and modes ['sliding_window', 'key_value_net', 'with_recompute']
+
+Perplexity after 5000 Label Tokens and Cache Size 32 with Mode sliding_window: 470.0736. Took 91.62 seconds
+
+Perplexity after 5000 Label Tokens and Cache Size 32 with Mode key_value_net: 131.3466. Took 139.78 seconds
+
+Perplexity after 5000 Label Tokens and Cache Size 32 with Mode with_recompute: 103.2742. Took 168.45 seconds
+
+Perplexity after 5000 Label Tokens and Cache Size 64 with Mode sliding_window: 625.0847. Took 104.14 seconds
+
+Perplexity after 5000 Label Tokens and Cache Size 64 with Mode key_value_net: 144.0831. Took 145.83 seconds
+
+Perplexity after 5000 Label Tokens and Cache Size 64 with Mode with_recompute: 76.5718. Took 216.40 seconds
+
+Perplexity after 5000 Label Tokens and Cache Size 128 with Mode sliding_window: 1167.4244. Took 106.59 seconds
+
+Perplexity after 5000 Label Tokens and Cache Size 128 with Mode key_value_net: 156.0799. Took 159.90 seconds
+
+Perplexity after 5000 Label Tokens and Cache Size 128 with Mode with_recompute: 60.0863. Took 321.23 seconds
+
+Perplexity after 5000 Label Tokens and Cache Size 255 with Mode sliding_window: 1582.4480. Took 107.22 seconds
+
+Perplexity after 5000 Label Tokens and Cache Size 255 with Mode key_value_net: 326.5491. Took 179.37 seconds
+
+Perplexity after 5000 Label Tokens and Cache Size 255 with Mode with_recompute: 50.6410. Took 528.26 seconds
+

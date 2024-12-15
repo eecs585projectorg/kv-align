@@ -1,0 +1,42 @@
+Note: This is latency log for 5000 tokens for kv-align trained on distilgpt2 with layer sizes l1, l2 = 128, 128
+
+nohup: ignoring input
+Started Set Up
+Finished Set Up
+
+Avg Time to First Token for Cache Size 32 with Mode sliding_window: 45.39ms
+Avg Time per Token after First Token for Cache Size 32 with Mode sliding_window: 45.70ms
+
+Avg Time to First Token for Cache Size 32 with Mode key_value_net: 32.72ms
+Avg Time per Token after First Token for Cache Size 32 with Mode key_value_net: 60.81ms
+
+Avg Time to First Token for Cache Size 32 with Mode with_recompute: 32.08ms
+Avg Time per Token after First Token for Cache Size 32 with Mode with_recompute: 66.13ms
+
+Avg Time to First Token for Cache Size 64 with Mode sliding_window: 31.69ms
+Avg Time per Token after First Token for Cache Size 64 with Mode sliding_window: 49.54ms
+
+Avg Time to First Token for Cache Size 64 with Mode key_value_net: 32.09ms
+Avg Time per Token after First Token for Cache Size 64 with Mode key_value_net: 59.29ms
+
+Avg Time to First Token for Cache Size 64 with Mode with_recompute: 31.38ms
+Avg Time per Token after First Token for Cache Size 64 with Mode with_recompute: 65.40ms
+
+Avg Time to First Token for Cache Size 128 with Mode sliding_window: 31.71ms
+Avg Time per Token after First Token for Cache Size 128 with Mode sliding_window: 45.21ms
+
+Avg Time to First Token for Cache Size 128 with Mode key_value_net: 32.11ms
+Avg Time per Token after First Token for Cache Size 128 with Mode key_value_net: 62.65ms
+
+Avg Time to First Token for Cache Size 128 with Mode with_recompute: 31.56ms
+Avg Time per Token after First Token for Cache Size 128 with Mode with_recompute: 69.37ms
+
+Avg Time to First Token for Cache Size 255 with Mode sliding_window: 31.82ms
+Avg Time per Token after First Token for Cache Size 255 with Mode sliding_window: 57.89ms
+
+Avg Time to First Token for Cache Size 255 with Mode key_value_net: 31.51ms
+Avg Time per Token after First Token for Cache Size 255 with Mode key_value_net: 65.31ms
+
+Avg Time to First Token for Cache Size 255 with Mode with_recompute: 31.91ms
+Avg Time per Token after First Token for Cache Size 255 with Mode with_recompute: 64.38ms
+

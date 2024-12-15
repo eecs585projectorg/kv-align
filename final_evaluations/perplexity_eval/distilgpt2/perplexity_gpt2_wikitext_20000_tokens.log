@@ -1,0 +1,24 @@
+Perplexity after 20000 Label Tokens and Cache Size 32 with Mode key_value_net: 134.2972. Took 2624.16 seconds
+
+Perplexity after 20000 Label Tokens and Cache Size 32 with Mode with_recompute: 104.0200. Took 767.27 seconds
+
+Perplexity after 20000 Label Tokens and Cache Size 32 with Mode sliding_window: 593.4364. Took 352.73 seconds
+
+Perplexity after 20000 Label Tokens and Cache Size 64 with Mode key_value_net: 145.4735. Took 536.83 seconds
+
+Perplexity after 20000 Label Tokens and Cache Size 64 with Mode with_recompute: 75.6148. Took 1105.47 seconds
+
+Perplexity after 20000 Label Tokens and Cache Size 64 with Mode sliding_window: 798.6519. Took 362.66 seconds
+
+Perplexity after 20000 Label Tokens and Cache Size 128 with Mode key_value_net: 148.3063. Took 581.63 seconds
+
+Perplexity after 20000 Label Tokens and Cache Size 128 with Mode with_recompute: 58.5745. Took 1749.84 seconds
+
+Perplexity after 20000 Label Tokens and Cache Size 128 with Mode sliding_window: 1507.3171. Took 370.47 seconds
+
+Perplexity after 20000 Label Tokens and Cache Size 255 with Mode key_value_net: 333.8580. Took 649.80 seconds
+
+Perplexity after 20000 Label Tokens and Cache Size 255 with Mode with_recompute: 48.8632. Took 3077.36 seconds
+
+Perplexity after 20000 Label Tokens and Cache Size 255 with Mode sliding_window: 1980.2808. Took 389.59 seconds
+

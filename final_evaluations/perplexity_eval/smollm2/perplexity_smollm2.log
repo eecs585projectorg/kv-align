@@ -1,0 +1,29 @@
+nohup: ignoring input
+Token indices sequence length is longer than the specified maximum sequence length for this model (74531 > 8192). Running this sequence through the model will result in indexing errors
+
+Starting perplexity evaluation for model HuggingFaceTB/SmolLM2-135M for num_tokens 20000, cache_sizes [32, 64, 128, 255], dataset wikitext, and modes ['key_value_net', 'with_recompute', 'sliding_window']
+
+Perplexity after 20000 Label Tokens and Cache Size 32 with Mode key_value_net: 36.3241. Took 2414.28 seconds
+
+Perplexity after 20000 Label Tokens and Cache Size 32 with Mode with_recompute: 37.3501. Took 2317.31 seconds
+
+Perplexity after 20000 Label Tokens and Cache Size 32 with Mode sliding_window: 36.4821. Took 1819.96 seconds
+
+Perplexity after 20000 Label Tokens and Cache Size 64 with Mode key_value_net: 26.6490. Took 2453.45 seconds
+
+Perplexity after 20000 Label Tokens and Cache Size 64 with Mode with_recompute: 26.2319. Took 2827.11 seconds
+
+Perplexity after 20000 Label Tokens and Cache Size 64 with Mode sliding_window: 26.3738. Took 1690.35 seconds
+
+Perplexity after 20000 Label Tokens and Cache Size 128 with Mode key_value_net: 23.9609. Took 2537.71 seconds
+
+Perplexity after 20000 Label Tokens and Cache Size 128 with Mode with_recompute: 20.4698. Took 3631.53 seconds
+
+Perplexity after 20000 Label Tokens and Cache Size 128 with Mode sliding_window: 20.8920. Took 1753.18 seconds
+
+Perplexity after 20000 Label Tokens and Cache Size 255 with Mode key_value_net: 137.1321. Took 2657.13 seconds
+
+Perplexity after 20000 Label Tokens and Cache Size 255 with Mode with_recompute: 16.9865. Took 5668.62 seconds
+
+Perplexity after 20000 Label Tokens and Cache Size 255 with Mode sliding_window: 17.4163. Took 1796.34 seconds
+
