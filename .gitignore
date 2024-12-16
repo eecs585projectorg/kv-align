@@ -15,6 +15,7 @@ latency/
 nglls/
 test/
 *.sh 
+*.png
 test.ipynb
 
 # C extensions

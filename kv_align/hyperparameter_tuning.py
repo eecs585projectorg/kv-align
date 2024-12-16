@@ -1,5 +1,5 @@
-# Ref: https://github.com/karpathy/build-nanogpt, StreamingLLM, ChatGPT
-# Ref: https://docs.ray.io/en/latest/tune/examples/includes/async_hyperband_example.html, https://docs.ray.io/en/latest/tune/getting-started.html, https://pytorch.org/tutorials/beginner/hyperparameter_tuning_tutorial.html
+# Refs: https://github.com/karpathy/build-nanogpt, StreamingLLM, ChatGPT
+# Refs: https://docs.ray.io/en/latest/tune/examples/includes/async_hyperband_example.html, https://docs.ray.io/en/latest/tune/getting-started.html, https://pytorch.org/tutorials/beginner/hyperparameter_tuning_tutorial.html
 
 import torch
 from torch import nn
@@ -81,7 +81,6 @@ class NeuralNetwork(nn.Module):
         self.emb_blocks = nn.Embedding(num_blocks, emb_blocks_dim)
         self.emb_heads = nn.Embedding(num_heads, emb_heads_dim)
         
-        # Simple MLP for continuous variables X and Y
         self.fc1 = nn.Linear(64 + emb_pos_dim + emb_blocks_dim + emb_heads_dim, l1)
         self.fc2 = nn.Linear(l1, l2)
         self.fc3 = nn.Linear(l2, 64)
@@ -153,7 +152,7 @@ def train_keys_values(config):
                 # Move data to the GPU
                 batch_X, batch_P, batch_B, batch_H, batch_Y = batch_X.to("cuda"), batch_P.to("cuda"), batch_B.to("cuda"), batch_H.to("cuda"), batch_Y.to("cuda")
                 
-                # Forward pass (both continuous and categorical variables)
+                # Forward pass
                 predictions = model(batch_X, batch_P, batch_B, batch_H)
                 
                 # Calculate loss
@@ -163,7 +162,6 @@ def train_keys_values(config):
                 norm = torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
                 optimizer.step()
 
-                # torch.cuda.synchronize()
                 end_time = time.time()
                 
                 # Log loss every log_interval batches
@@ -196,8 +194,8 @@ def train_keys_values(config):
                         {
                             'model_state_dict': model.state_dict(),  # Save model weights
                             'optimizer_state_dict': optimizer.state_dict(),  # Save optimizer state
-                            'train_losses': train_losses,      # Optionally, save losses if you want to resume training stats
-                            'train_times': train_times,         # Optionally, save other metrics like time
+                            'train_losses': train_losses,     
+                            'train_times': train_times,        
                             'val_losses': val_losses,
                             'val_times': val_times
                         }, os.path.join(temp_checkpoint_dir, "model.pth")

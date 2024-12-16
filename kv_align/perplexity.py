@@ -1,4 +1,4 @@
-# Ref: ChatGPT, eval_long_ppl.py of streaming_llm
+# Refs: ChatGPT, eval_long_ppl.py of StreamingLLM
 
 import warnings
 warnings.filterwarnings("ignore", category=FutureWarning)
@@ -43,7 +43,7 @@ def compute_perplexity(mode, cache_size, model, tokenizer, data_ids, num_tokens,
 
     for _ in range(num_tokens - 1):
         if not recompute:
-            # For window attention or kv-align
+            # For StreamingLLM or KV-Align
             past_key_values = fix_cache(past_key_values, start_size, recent_size, apply_fix, key_model, value_model, num_blocks, num_heads, emb_size)
             outputs = model(input_ids=label, past_key_values=past_key_values, use_cache=True)
         else:

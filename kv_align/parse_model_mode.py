@@ -12,7 +12,7 @@ def parse_mode(args):
         mode = "key_value_net"
     elif args.mode in ["sliding_window", "sw"]:
         mode = "sliding_window"  
-    elif args.mode in ["with_recompute", "wr"]:
+    elif args.mode in ["with_recompute", "wr", "ar", "attention_recomputation"]:
         mode = "with_recompute"
     else:
         raise ValueError("Invalid Mode")

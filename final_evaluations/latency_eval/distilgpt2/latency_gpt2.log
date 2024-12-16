@@ -1,4 +1,4 @@
-Note: This is latency log for 5000 tokens for kv-align trained on distilgpt2 with layer sizes l1, l2 = 128, 128
+Note: This is latency log for 5000 tokens for kv-align trained on distilgpt2 with layer sizes l1, l2 = 128, 128, with one prompt and num_trials_per_prompt = 3
 
 nohup: ignoring input
 Started Set Up

@@ -32,13 +32,12 @@ def get_data_plot(mode, model_name, limit_2gram):
     for i in range(0, len(tokens) // 10 * 10, 10):
         count = count_valid_words(tokens[i:i+10])
         if count < 5:
-            # print(i, tokens[i:i+10])
             bad_num += 1
             is_readable.append(False)
         else:
             is_readable.append(True)
 
-    print("bad_num", bad_num)
+    print("Number of Unreadable Chunks", bad_num)
 
     np.save(f"final_evaluations/readability_data/is_readable_model_{model_name}_mode_{mode}_limit_2gram_{limit_2gram}.npy", np.array(is_readable))
 
@@ -64,14 +63,12 @@ def get_data_plot(mode, model_name, limit_2gram):
     ax.get_yaxis().set_visible(False)
     ax.get_xaxis().set_ticks_position('none')
 
-    # Optional: Add labels or titles if necessary
     ax.set_title(f'Readability of model {model_name} with mode {mode} and limit_2gram {limit_2gram}')
 
     plt.savefig(f"final_evaluations/readability_data/readability_plot_model_{model_name}_mode_{mode}_limit_2gram_{limit_2gram}.png")
-    # Show the plot
     plt.show()
 
 for mode in ["kv", "sw"]:
     for model_name in ["gpt2", "rope"]:
-        for limit_2gram in [False]:
+        for limit_2gram in [True, False]:
             get_data_plot(mode, model_name, limit_2gram)

@@ -1,12 +1,13 @@
-# This plots figure 1 on paper
-# # use wiki 20000 from this link https://github.com/eecs585projectorg/cse585_project/tree/main/final_evaluations/perplexity_eval/distilgpt2
+# Ref: ChatGPT
+
+# This plots Figure 3 in the paper
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.lines import Line2D
 
 # Data for Cache Sizes
-cache_sizes = [32, 64, 128, 256]
-modes = ["Sliding Window\nwith Recomputation", "StreamingLLM", "KV-Align"]
+cache_sizes = [32, 64, 128, 255]
+modes = ["Attention Recomputation", "StreamingLLM", "KV-Align"]
 perplexity_values = [
     [104.0200, 75.6148, 58.5745, 48.8632],  # Sliding Window with Recomputation
     [593.4364, 798.6519, 1507.3171, 1980.2808],  # StreamingLLM
@@ -38,24 +39,25 @@ for i, mode in enumerate(modes):
         )
 
 # Add labels, legend, and grid
-plt.xlabel("Latency (s)", fontsize=12)
-plt.ylabel("Perplexity", fontsize=12)
+plt.xlabel("Latency (s)", fontsize=14)
+plt.ylabel("Perplexity", fontsize=14)
 plt.ylim(0, 2200)  # Increase the y-axis range
 plt.grid(True)
 
+
 # Create custom legend for models (shapes with white background)
 model_legend = [
-    Line2D([0], [0], marker="^", color="white", markerfacecolor="black", markersize=10, label="Sliding Window"),
-    Line2D([0], [0], marker="s", color="white", markerfacecolor="black", markersize=10, label="StreamingLLM"),
-    Line2D([0], [0], marker="o", color="white", markerfacecolor="black", markersize=10, label="KV-Align"),
+    Line2D([0], [0], marker="^", color="white", markerfacecolor="black", markersize=14, label="Sliding Window"),
+    Line2D([0], [0], marker="s", color="white", markerfacecolor="black", markersize=14, label="StreamingLLM"),
+    Line2D([0], [0], marker="o", color="white", markerfacecolor="black", markersize=14, label="KV-Align"),
 ]
 
 # Create custom legend for cache sizes (colors)
 cache_legend = [
-    Line2D([0], [0], marker="o", color="white", markerfacecolor="blue", markersize=10, label="Cache 32"),
-    Line2D([0], [0], marker="o", color="white", markerfacecolor="orange", markersize=10, label="Cache 64"),
-    Line2D([0], [0], marker="o", color="white", markerfacecolor="green", markersize=10, label="Cache 128"),
-    Line2D([0], [0], marker="o", color="white", markerfacecolor="red", markersize=10, label="Cache 256"),
+    Line2D([0], [0], marker="o", color="white", markerfacecolor="blue", markersize=14, label="Cache 32"),
+    Line2D([0], [0], marker="o", color="white", markerfacecolor="orange", markersize=14, label="Cache 64"),
+    Line2D([0], [0], marker="o", color="white", markerfacecolor="green", markersize=14, label="Cache 128"),
+    Line2D([0], [0], marker="o", color="white", markerfacecolor="red", markersize=14, label="Cache 255"),
 ]
 
 # Add legends
@@ -64,10 +66,13 @@ plt.legend(
     handles=combined_legend,
     loc="upper right",
     title="Models & Cache Sizes",
-    fontsize=10,
+    fontsize=14,
 )
+
+plt.xticks(fontsize=14)
+plt.yticks(fontsize=14)
 
 # Adjust layout and show plot
 plt.tight_layout()
-plt.savefig("perplexity_vs_latency_xy_gpt2.png", dpi=300, bbox_inches="tight")
+plt.savefig("plots/perplexity_vs_latency_xy_gpt2.png", dpi=300, bbox_inches="tight")
 plt.show()

@@ -14,8 +14,8 @@ stride_size = 32
 num_shards = 11
 num_data = 1000
 
-model_name = "HuggingFaceTB/SmolLM2-135M"
-assert model_name in ["HuggingFaceTB/SmolLM2-135M"]
+model_name = "distilbert/distilgpt2"
+assert model_name in ["distilbert/distilgpt2", "HuggingFaceTB/SmolLM2-135M"]
 
 os.makedirs('training_data', exist_ok=True)
 
@@ -64,7 +64,7 @@ for idx, batch in enumerate(input_ids_batches):
         keys = torch.cat(keys)
         values = torch.cat(values)
 
-        torch.save(keys, f"rtraining_data/misaligned_keys_shard{idx // shard_size + 1}.pt")
+        torch.save(keys, f"training_data/misaligned_keys_shard{idx // shard_size + 1}.pt")
         torch.save(values, f"training_data/misaligned_values_shard{idx // shard_size + 1}.pt")
         
         print(f"Misaligned keys.shape: {keys.shape}, values.shape: {values.shape}")
@@ -97,7 +97,7 @@ for idx, batch in enumerate(new_input_ids_batches):
         keys = torch.cat(keys)
         values = torch.cat(values)
 
-        torch.save(keys, f"rtraining_data/aligned_keys_shard{idx // shard_size + 1}.pt")
+        torch.save(keys, f"training_data/aligned_keys_shard{idx // shard_size + 1}.pt")
         torch.save(values, f"training_data/aligned_values_shard{idx // shard_size + 1}.pt")
 
         print(f"Aligned keys.shape: {keys.shape}, values.shape: {values.shape}")

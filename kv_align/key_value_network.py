@@ -16,18 +16,20 @@ if key:
 else:
     target = "values"
 
-num_blocks = 30
-num_heads = 3
+# Make sure these parameters are appropriately set for your model of choice
+num_blocks = 6 # 6 for DistilGPT2 and 30 for SmolLM2
+num_heads = 12 # 12 for DistilGPT2 and 3 for SmolLM2
+embed_dim = 64 # 64 for both DistilGPT2 and SmolLM2
+
 cache_size = 256
 start_size = 4
 sequence_dim = cache_size - start_size - 1
-embed_dim = 64
 
 def load_shard(index, start_size, sequence_dim):
     with torch.no_grad():
         # Load keys or values
-        initial_target_path = f"rope_training_data/misaligned_{target}_shard{index}.pt"
-        new_target_path = f"rope_training_data/aligned_{target}_shard{index}.pt"
+        initial_target_path = f"training_data/misaligned_{target}_shard{index}.pt"
+        new_target_path = f"training_data/aligned_{target}_shard{index}.pt"
         print("Loading from", initial_target_path, "and", new_target_path)
         initial_target = torch.load(initial_target_path).detach()
         new_target = torch.load(new_target_path).detach()
@@ -50,6 +52,7 @@ def load_shard(index, start_size, sequence_dim):
         B = torch.tensor(B)
         H = torch.tensor(H)
 
+        # Uncomment for debugging:
         # print(f"X, P, B, H: {X.shape}, {P.shape}, {B.shape}, {H.shape}")
 
         # Reshape Y to match
@@ -67,11 +70,9 @@ class NeuralNetwork(nn.Module):
         self.emb_blocks = nn.Embedding(num_blocks, emb_blocks_dim)
         self.emb_heads = nn.Embedding(num_heads, emb_heads_dim)
         
-        # Simple MLP for continuous variables X and Y
         self.fc1 = nn.Linear(64 + emb_pos_dim + emb_blocks_dim + emb_heads_dim, 128)
         self.fc2 = nn.Linear(128, 128)
         self.fc3 = nn.Linear(128, 64)
-        # self.dropout = nn.Dropout(0.2)  # 20% dropout rate
 
         
     def forward(self, x, p, b, h):
@@ -89,7 +90,7 @@ class NeuralNetwork(nn.Module):
 
 # Initialize the model, criterion, and optimizer
 model = NeuralNetwork().to("cuda")
-criterion = nn.MSELoss()  # Mean Squared Error Loss (for regression)
+criterion = nn.MSELoss()  # Mean Squared Error Loss 
 optimizer = optim.AdamW(model.parameters(), lr=0.0007)
 
 os.makedirs(f'training/{target}/checkpoints', exist_ok=True)
@@ -155,7 +156,7 @@ for epoch in range(num_epochs):
             # Move data to the GPU
             batch_X, batch_P, batch_B, batch_H, batch_Y = batch_X.to("cuda"), batch_P.to("cuda"), batch_B.to("cuda"), batch_H.to("cuda"), batch_Y.to("cuda")
             
-            # Forward pass (both continuous and categorical variables)
+            # Forward pass
             predictions = model(batch_X, batch_P, batch_B, batch_H)
             
             # Calculate loss
@@ -165,7 +166,6 @@ for epoch in range(num_epochs):
             norm = torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
             optimizer.step()
 
-            # torch.cuda.synchronize()
             end_time = time.time()
             
             # Log loss every log_interval batches
@@ -196,8 +196,8 @@ for epoch in range(num_epochs):
             torch.save({
                 'model_state_dict': model.state_dict(),  # Save model weights
                 'optimizer_state_dict': optimizer.state_dict(),  # Save optimizer state
-                'train_losses': train_losses,      # Optionally, save losses if you want to resume training stats
-                'train_times': train_times,         # Optionally, save other metrics like time
+                'train_losses': train_losses,      
+                'train_times': train_times,       
                 'val_losses': val_losses,
                 'val_times': val_times
             }, checkpoint_path)

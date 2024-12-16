@@ -29,7 +29,7 @@ def generate(mode, prompt, model, tokenizer, key_model, value_model, num_tokens,
     num_blocks, num_heads, emb_size = set_up_model(model, mode)
 
     if print_generation:
-        print(f"\nStarting generation with model {model.config._name_or_path} with mode {mode}\n")
+        print(f"\nStarting generation with model {model.config._name_or_path} with mode {mode} and cache size {cache_size} with no_repeat_2gram {no_repeat_2gram}\n")
 
     input_ids = tokenizer(prompt, return_tensors="pt").input_ids
     input_ids = input_ids.to(model.device)
@@ -156,7 +156,7 @@ def run_latency_evaluation(cache_sizes, num_tokens, mode_names, num_trials_per_p
     
     # Save the dictionary to a JSON file
     if not no_save:
-        with open('latency/cache_size_to_avg_times_tuned.json', 'w') as json_file:
+        with open('latency/cache_size_to_avg_times.json', 'w') as json_file:
             json.dump(cache_size_to_avg_times, json_file, indent=4)
 
 
@@ -178,14 +178,12 @@ def main(args):
         model, tokenizer = get_llm(model_name)
         generate(mode, prompts[0], model, tokenizer, key_model, value_model, num_tokens=args.num_tokens, cache_size=args.cache_size, print_generation=True, start_size=4, no_repeat_2gram=not args.allow_repeats, flush=args.flush)
     else:
-        num_trials_per_prompt = 3
         cache_sizes = [32, 64, 128, 255]
-        num_tokens = 2000
         if args.kv_align_only:
             mode_names = ["key_value_net"]
         else:
             mode_names = ["sliding_window", "key_value_net", "with_recompute"]
-        run_latency_evaluation(cache_sizes, num_tokens, mode_names, num_trials_per_prompt, prompts, model_name, key_model, value_model, no_save=args.no_save, no_repeats=not args.allow_repeats)
+        run_latency_evaluation(cache_sizes, args.num_tokens, mode_names, args.num_trials_per_prompt, prompts, model_name, key_model, value_model, no_save=args.no_save, no_repeats=not args.allow_repeats)
 
 if __name__ == "__main__":
     """
@@ -195,19 +193,20 @@ if __name__ == "__main__":
         python kv_align/generation.py --model_name gpt2 --num_tokens 2000 --cache_size 54 --flush --mode wr
 
     Example command for latency eval:
-        python kv_align/generation.py --model_name gpt2 --latency
+        python kv_align/generation.py --model_name gpt2 --latency --num_tokens 2000
     """
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--model_name", type=str, default="distilbert/distilgpt2")
+    parser.add_argument("--num_tokens", type=int, default=2000)
 
     # Argument for latency evaluation
     parser.add_argument("--latency", action="store_true")
     parser.add_argument("--kv_align_only", action="store_true")
     parser.add_argument("--no_save", action="store_true")
+    parser.add_argument("--num_trials_per_prompt", type=int, default=3)
 
     # Arguments for generation
-    parser.add_argument("--num_tokens", type=int, default=2000)
     parser.add_argument("--cache_size", type=int, default=54)
     parser.add_argument("--allow_repeats", action="store_true")
     parser.add_argument("--mode", type=str, default="key_value_net") # Options: "sliding_window" (sw), "key_value_net" (kvn), "with_recompute" (wr)
