@@ -47,7 +47,7 @@ plt.grid(True)
 
 # Create custom legend for models (shapes with white background)
 model_legend = [
-    Line2D([0], [0], marker="^", color="white", markerfacecolor="black", markersize=14, label="Sliding Window"),
+    Line2D([0], [0], marker="^", color="white", markerfacecolor="black", markersize=14, label="Attention Recomputation"),
     Line2D([0], [0], marker="s", color="white", markerfacecolor="black", markersize=14, label="StreamingLLM"),
     Line2D([0], [0], marker="o", color="white", markerfacecolor="black", markersize=14, label="KV-Align"),
 ]
