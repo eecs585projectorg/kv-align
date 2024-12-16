@@ -65,21 +65,26 @@ We include a list of coding references at the end of this section. Here are some
 
 - With regards to [6], we note that ChatGPT was utilized astutely during the coding process, e.g., for model training code and plotting code.
 
+- The highlighted answer and thread in [7] helped in understanding the KV-cache and the "error propagation" issues to watch out for.
+
 ```
 [1] Xiao, Guangxuan, Yuandong Tian, Beidi Chen, Song Han, and Mike Lewis. "Efficient streaming language models with attention sinks." ICLR, 2024.
 ```
 ```
-[2] mit-han-lab. Efficient Streaming Language Models with Attention Sinks, (2024), GitHub repository, https://github.com/mit-han-lab/streaming-llm
+[2] mit-han-lab. Efficient Streaming Language Models with Attention Sinks, 2024, GitHub repository, https://github.com/mit-han-lab/streaming-llm
 ```
 ```
-[3] tomaarsen. Attention Sinks in Transformers for endless fluent generation, (2023), GitHub repository, https://github.com/tomaarsen/attention_sinks
+[3] tomaarsen. Attention Sinks in Transformers for endless fluent generation, 2023, GitHub repository, https://github.com/tomaarsen/attention_sinks
 ```
 ```
-[4] lm-sys. Fastchat, (2024), GitHub repository, https://github.com/lm-sys/FastChat/blob/main/fastchat/llm_judge/data/mt_bench/question.jsonl
+[4] lm-sys. Fastchat, 2024, GitHub repository, https://github.com/lm-sys/FastChat/blob/main/fastchat/llm_judge/data/mt_bench/question.jsonl
 ```
 ```
-[5] tomaarsen. 2023. Bigcode architecture. attention_sinks. https://github.com/tomaarsen/attention_sinks/issues/21
+[5] tomaarsen. Bigcode architecture, 2024. attention_sinks. https://github.com/tomaarsen/attention_sinks/issues/21
 ```
 ```
 [6] OpenAI, 2024. ChatGPT (4o) [Large Language Model] https://chatgpt.com
+```
+```
+[7] gante. Possible Bug with KV Caching in Llama (original) model, 2023. huggingface/transformers. Github issue. https://github.com/huggingface/transformers/issues/25420#issuecomment-1775317535
 ```

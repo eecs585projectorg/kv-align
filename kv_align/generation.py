@@ -1,5 +1,5 @@
 
-# Refs: StreamingLLM, ChatGPT
+# Refs: StreamingLLM, ChatGPT, https://github.com/huggingface/transformers/issues/25420
 
 import warnings
 warnings.filterwarnings("ignore", category=FutureWarning)

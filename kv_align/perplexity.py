@@ -1,4 +1,4 @@
-# Refs: ChatGPT, eval_long_ppl.py of StreamingLLM
+# Refs: ChatGPT, eval_long_ppl.py of StreamingLLM, https://github.com/huggingface/transformers/issues/25420
 
 import warnings
 warnings.filterwarnings("ignore", category=FutureWarning)
