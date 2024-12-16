@@ -37,12 +37,14 @@ Selected Parameters for Generation:
 ```bash
 python kv_align/generation.py --model_name gpt2 --latency --num_tokens 2000
 ```
+Selected parameter for latency evaluation:
+- `num_trials_per_prompt` specifies the number of latency measurements made for that prompt for each configuration. If unspecified, its default value is 3.
 
 ### Perplexity Evaluation
 ```bash
 python kv_align/perplexity.py --model_name gpt2 --dataset_name wikitext --num_tokens 20000 
 ```
-Selected parameters for perplexity generation:
+Selected parameter for perplexity generation:
 - `dataset_name`: valid inputs are `wikitext` and `everyday`
 
 
@@ -67,6 +69,8 @@ We include a list of coding references at the end of this section. Here are some
 
 - The highlighted answer and thread in [7] helped in understanding the KV-cache and the "error propagation" issues to watch out for.
 
+- The pedagogically excellent works [8] and [9] by Karpathy helped with understanding the details of an LLM (particularly, GPT2) and how to code the training and generation procedure (e.g., sharding the training data).
+
 ```
 [1] Xiao, Guangxuan, Yuandong Tian, Beidi Chen, Song Han, and Mike Lewis. "Efficient streaming language models with attention sinks." ICLR, 2024.
 ```
@@ -87,4 +91,10 @@ We include a list of coding references at the end of this section. Here are some
 ```
 ```
 [7] gante. Possible Bug with KV Caching in Llama (original) model, 2023. huggingface/transformers. Github issue. https://github.com/huggingface/transformers/issues/25420#issuecomment-1775317535
+```
+```
+[8] Karpathy, Andrej. Let's reproduce GPT-2 (124M), 2024. Youtube Video. https://www.youtube.com/watch?v=l8pRSuU81PU
+```
+```
+[9] karpathy. build nanoGPT, 2024, GitHub repository, https://github.com/karpathy/build-nanogpt
 ```
